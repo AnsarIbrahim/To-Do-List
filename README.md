@@ -27,7 +27,7 @@
 # 📖 To Do List <a name="about-project"></a>
 
 
-**To Do List** is a website that displays my Techinical skills and projects that i have done.
+**To Do List** is a application that displays my Techinical skills and projects that i have done.
 
 
 **Link to online version of To Do List** is in [Live Demo](#live-demo)
