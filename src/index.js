@@ -11,6 +11,11 @@ const tasks = [
     completed: false,
     index: 2,
   },
+  {
+    description: 'Project to complete',
+    completed: false,
+    index: 3,
+  },
 ];
 
 function renderTaskList() {
