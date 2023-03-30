@@ -64,11 +64,14 @@
 ### Key Features <a name="key-features"></a>
 
 - **To-do-list**
+- **ADD**
+- **REMOVE**
 - **Setup with Webpack**
 - **CSS loader Webpack**
 - **HTML Webpack Plugin**
 - **Source files in src(Folder)**
 - **dist (folder)**
+- **Setup with bundle webpack**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
