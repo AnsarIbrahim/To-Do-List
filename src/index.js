@@ -1,55 +1,59 @@
+import * as task from './live.js';
 import './style.css';
 
-const tasks = [
-  {
-    description: 'wash the Dishes',
-    completed: false,
-    index: 1,
-  },
-  {
-    description: 'complete To Do list Project',
-    completed: false,
-    index: 2,
-  },
-  {
-    description: 'Project to complete',
-    completed: false,
-    index: 3,
-  },
+let list = [
+  { description: 'Set up a new project with webpack', isCompleted: false, index: 0 },
+  { description: 'Set up a new project with bundle webpack', isCompleted: false, index: 1 },
+  { description: 'Create an index.js file', isCompleted: false, index: 2 },
+  { description: 'Write a function to iterate over the tasks array and populate an HTML', isCompleted: false, index: 3 },
 ];
 
-function renderTaskList() {
-  const taskList = document.getElementById('task-list');
-  taskList.innerHTML = '';
-  tasks.forEach((task) => {
-    const listItem = document.createElement('li');
-
+function todoList() {
+  if (window.localStorage.getItem('localTasks')) {
+    const localTasks = window.localStorage.getItem('localTasks');
+    list = JSON.parse(localTasks);
+  }
+  document.querySelector('.todo-list').innerHTML = '';
+  list.forEach((item) => {
+    const taskElement = document.createElement('li');
+    taskElement.classList.add('task');
+    if (item.isCompleted) {
+      taskElement.classList.add('completed');
+    }
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
-    checkbox.checked = task.completed;
-    checkbox.addEventListener('change', (event) => {
-      task.completed = event.target.checked;
-      // eslint-disable-next-line no-use-before-define
-      checkAllCompleted();
+    checkbox.classList.add('task-check');
+    checkbox.addEventListener('click', () => {
+      task.status(item, list);
+      todoList();
     });
-    listItem.appendChild(checkbox);
-
-    const description = document.createElement('span');
-    description.innerText = task.description;
-    if (task.completed) {
-      description.classList.add('completed');
-    }
-    listItem.appendChild(description);
-
-    taskList.appendChild(listItem);
+    checkbox.checked = item.isCompleted;
+    taskElement.appendChild(checkbox);
+    const taskText = document.createElement('input');
+    taskText.classList = 'task-text';
+    taskText.value = item.description;
+    taskText.addEventListener('change', () => {
+      if (taskText.value.length > 0) {
+        item.description = taskText.value;
+        task.saveLocal(list);
+      }
+    });
+    taskElement.appendChild(taskText);
+    const dragIcon = document.createElement('i');
+    dragIcon.classList = 'fas fa-ellipsis-v drag icon';
+    taskElement.appendChild(dragIcon);
+    taskElement.draggable = 'true';
+    document.querySelector('.todo-list').appendChild(taskElement);
   });
 }
 
-function checkAllCompleted() {
-  const allCompleted = tasks.every((task) => task.completed);
-  const clearAllButton = document.getElementById('clear-all');
-  clearAllButton.disabled = !allCompleted;
-}
-
-renderTaskList();
-checkAllCompleted();
+todoList();
+document.querySelector('#taskForm').addEventListener('submit', (event) => {
+  event.preventDefault();
+  task.add(list);
+  todoList();
+});
+document.querySelector('.clearer').addEventListener('click', () => {
+  task.removeDone(list);
+  todoList();
+});
