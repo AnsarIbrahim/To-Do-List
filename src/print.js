@@ -4,3 +4,4 @@ export default function printMe() {
       console.log('Some debug information');
     }
   }
+  

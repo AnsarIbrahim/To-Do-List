@@ -2,14 +2,6 @@ h1 {
   text-align: center;
 }
 
-.deleteBtn {
-  cursor: pointer;
-}
-
-.edit-button {
-  display: none;
-}
-
 section {
   width: 100%;
   display: flex;

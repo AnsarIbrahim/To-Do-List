@@ -72,6 +72,7 @@
 - **Source files in src(Folder)**
 - **dist (folder)**
 - **Setup with bundle webpack**
+- **local-storage**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
