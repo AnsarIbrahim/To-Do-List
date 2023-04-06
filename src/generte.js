@@ -1,4 +1,4 @@
-import { saveLocal } from './live';
+import { saveLocal } from './live.js';
 
 export function add(list) {
   list.push({ description: document.querySelector('#newTask').value, isCompleted: false, index: list.length + 1 });
