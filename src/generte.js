@@ -9,6 +9,16 @@ export function add(list) {
   }
 }
 
+export function remove(list, i) {
+  if (i > list.length + 1 || i < 0) {
+    return;
+  }
+  const filteredArr = list.filter((task) => task.index !== i);
+  saveLocal(filteredArr);
+  // eslint-disable-next-line consistent-return
+  return filteredArr;
+}
+
 export function updateIndex(list) {
   let i = 1;
   list.forEach((elem) => {
