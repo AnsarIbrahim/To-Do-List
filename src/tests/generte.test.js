@@ -1,8 +1,8 @@
+import jsdom from 'jsdom';
 import { add } from '../generte.js';
 import { saveLocal } from '../live.js';
 
 // Import JSDOM and initialize it
-import jsdom from 'jsdom';
 
 const { JSDOM } = jsdom;
 const dom = new JSDOM('<!DOCTYPE html><html><body></body></html>', {

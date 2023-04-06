@@ -1,9 +1,12 @@
 import { saveLocal } from './live.js';
 
 export function add(list) {
-  list.push({ description: document.querySelector('#newTask').value, isCompleted: false, index: list.length + 1 });
-  document.querySelector('#newTask').value = '';
-  saveLocal(list);
+  const input = document.querySelector('#newTask');
+  if (input.value !== '') {
+    list.push({ description: document.querySelector('#newTask').value, isCompleted: false, index: list.length + 1 });
+    document.querySelector('#newTask').value = '';
+    saveLocal(list);
+  }
 }
 
 export function updateIndex(list) {
