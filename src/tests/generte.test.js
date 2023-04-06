@@ -74,64 +74,6 @@ describe('remove', () => {
     list = [
       { description: 'Task 1', isCompleted: false, index: 1 },
       { description: 'Task 2', isCompleted: false, index: 2 },
-      { description: 'Task 3', isCompleted: true, index: 3 }
-    ];
-  });
-
-  afterEach(() => {
-    // Reset the mock after each test
-    jest.clearAllMocks();
-  });
-
-  test('should remove a task from the list and call saveLocal', () => {
-    // Arrange
-    const indexToRemove = 1;
-
-    // Act
-    list = remove(list, indexToRemove);
-
-    // Assert
-    expect(list).toHaveLength(2);
-    expect(list[0].description).toEqual('Task 2');
-    expect(list[0].isCompleted).toBeFalsy();
-    expect(list[0].index).toEqual(2);
-    expect(list[1].description).toEqual('Task 3');
-    expect(list[1].isCompleted).toBeTruthy();
-    expect(list[1].index).toEqual(3);
-    expect(saveLocal).toHaveBeenCalledTimes(1);
-    expect(saveLocal).toHaveBeenCalledWith(list);
-  });
-
-  test('should not remove a task if the index is invalid and not call saveLocal', () => {
-    // Arrange
-    const indexToRemove = 5;
-
-    // Act
-    remove(list, indexToRemove);
-
-    // Assert
-    expect(list).toHaveLength(3);
-    expect(list[0].description).toEqual('Task 1');
-    expect(list[0].isCompleted).toBeFalsy();
-    expect(list[0].index).toEqual(1);
-    expect(list[1].description).toEqual('Task 2');
-    expect(list[1].isCompleted).toBeFalsy();
-    expect(list[1].index).toEqual(2);
-    expect(list[2].description).toEqual('Task 3');
-    expect(list[2].isCompleted).toBeTruthy();
-    expect(list[2].index).toEqual(3);
-    expect(saveLocal).not.toHaveBeenCalled();
-  });
-});
-
-describe('remove', () => {
-  let list;
-
-  beforeEach(() => {
-    // Initialize the list
-    list = [
-      { description: 'Task 1', isCompleted: false, index: 1 },
-      { description: 'Task 2', isCompleted: false, index: 2 },
       { description: 'Task 3', isCompleted: true, index: 3 },
     ];
   });
