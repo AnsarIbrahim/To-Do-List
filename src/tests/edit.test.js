@@ -32,7 +32,8 @@ describe('edit', () => {
   });
 
   test('should edit text', () => {
-    list = edit(text, i, list);
+    const newList = edit(text, i, list);
+    expect(newList[i].description).toEqual('');
     expect(saveLocal).toHaveBeenCalled();
   });
 });

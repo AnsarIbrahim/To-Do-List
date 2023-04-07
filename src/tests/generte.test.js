@@ -1,5 +1,5 @@
 import jsdom from 'jsdom';
-import { add, remove } from '../generte.js';
+import { add, remove, removeDone } from '../generte.js';
 import { saveLocal } from '../live.js';
 
 // Import JSDOM and initialize it
@@ -121,5 +121,24 @@ describe('remove', () => {
     expect(list[2].isCompleted).toBeTruthy();
     expect(list[2].index).toEqual(3);
     expect(saveLocal).not.toHaveBeenCalled();
+  });
+});
+
+describe('remove all completed tasks', () => {
+  let list;
+
+  beforeEach(() => {
+    list = [
+      { description: 'Task 1', isCompleted: false, index: 1 },
+      { description: 'Task 2', isCompleted: false, index: 2 },
+      { description: 'Task 3', isCompleted: true, index: 3 },
+    ];
+  });
+
+  test('should remove a done tasks', () => {
+    const newList = removeDone(list);
+
+    expect(saveLocal).toHaveBeenCalled();
+    expect(newList).toEqual([{ description: 'Task 1', isCompleted: false, index: 1 }, { description: 'Task 2', isCompleted: false, index: 2 }]);
   });
 });

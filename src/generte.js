@@ -28,7 +28,8 @@ export function updateIndex(list) {
 }
 
 export function removeDone(list) {
-  list = list.filter((elem) => elem.isCompleted === false);
-  updateIndex(list);
-  saveLocal(list);
+  const newList = list.filter((elem) => elem.isCompleted === false);
+  updateIndex(newList);
+  saveLocal(newList);
+  return newList;
 }

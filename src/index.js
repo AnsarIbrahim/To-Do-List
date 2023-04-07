@@ -52,6 +52,7 @@ document.querySelector('#taskForm').addEventListener('submit', (event) => {
   task.add(list);
   todoList();
 });
+
 document.querySelector('.clearer').addEventListener('click', () => {
   task.removeDone(list);
   todoList();
