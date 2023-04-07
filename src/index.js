@@ -1,5 +1,6 @@
 import * as task from './live.js';
 import './style.css';
+import edit from './edit.js';
 
 let list = [
   { description: 'Set up a new project with webpack', isCompleted: false, index: 0 },
@@ -14,7 +15,7 @@ function todoList() {
     list = JSON.parse(localTasks);
   }
   document.querySelector('.todo-list').innerHTML = '';
-  list.forEach((item) => {
+  list.forEach((item, i) => {
     const taskElement = document.createElement('li');
     taskElement.classList.add('task');
     if (item.isCompleted) {
@@ -33,10 +34,8 @@ function todoList() {
     taskText.classList = 'task-text';
     taskText.value = item.description;
     taskText.addEventListener('change', () => {
-      if (taskText.value.length > 0) {
-        item.description = taskText.value;
-        task.saveLocal(list);
-      }
+      edit(taskText, i, list);
+      taskText.value = list[i].description;
     });
     taskElement.appendChild(taskText);
     const dragIcon = document.createElement('i');
